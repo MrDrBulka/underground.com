@@ -628,8 +628,16 @@
         flex: none;
         min-width: 50%;
         border-bottom: 1px solid #333;
+        z-index: 1000;
       }
-      
+      .nav-item.active {
+  z-index: 10000;
+  position: relative;
+}
+
+.nav-item.active .dropdown {
+  z-index: 10001;
+}
       .nav-item:nth-child(even) {
         border-right: none;
       }
