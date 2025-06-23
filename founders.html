@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Основатели - Underground Gym</title>
+  <link rel="icon" href="content/Logo.jpg" type="image/jpg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #212121 0%, #1a1a1a 50%, #212121 100%);
+      border-bottom: 2px solid #ff6600;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    
+    .logo-container {
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #212121, #2a2a2a, #212121);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transform: scale(1);
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-icon {
+      width: 100px;
+      height: 50px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* Штанга */
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      width: 85px;
+      height: 5px;
+      background: linear-gradient(to right, #ccc, #fff, #ff6600, #fff, #ccc);
+      border-radius: 3px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    }
+
+    /* Левый диск */
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #666, #333);
+      border-radius: 50%;
+      border: 3px solid #ff6600;
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+    }
+
+    /* Правый диск */
+    .logo-icon .right-disk {
+      position: absolute;
+      right: 2px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #666, #333);
+      border-radius: 50%;
+      border: 3px solid #ff6600;
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+    }
+    
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .logo-main {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
+      line-height: 1;
+      background: linear-gradient(45deg, #fff, #ff6600, #fff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .logo-sub {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ff6600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      text-shadow: 0 0 10px rgba(255, 102, 0, 0.8);
+    }
+    
+    /* Navigation */
+    nav {
+      background: linear-gradient(135deg, #212121, #2a2a2a);
+      position: relative;
+      z-index: 1000; /* Увеличенный z-index для навигации */
+    }
+    
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff6600, transparent);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1000; /* Увеличенный z-index для контейнера навигации */
+    }
+    
+    .nav-item {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      padding: 20px 0;
+      border-right: 1px solid #333;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      background: linear-gradient(135deg, transparent, rgba(255, 102, 0, 0.05));
+      z-index: 1000; /* Увеличенный z-index для элементов навигации */
+    }
+    
+    .nav-item:last-child {
+      border-right: none;
+    }
+    
+    .nav-item:hover {
+      background: linear-gradient(135deg, #2a2a2a, #333);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 102, 0, 0.3);
+    }
+    
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6600, #ff8533);
+      transition: all 0.4s ease;
+      transform: translateX(-50%);
+    }
+    
+    .nav-item:hover::before {
+      width: 80%;
+    }
+    
+    .nav-item a {
+      text-decoration: none;
+      color: #f5f5f5;
+      display: block;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+    
+    /* Dropdown */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(135deg, #2a2a2a, #333);
+      border: 1px solid #ff6600;
+      display: none;
+      z-index: 1001; /* Увеличенный z-index для выпадающего меню */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+    }
+    
+    .dropdown-item {
+      padding: 15px;
+      border-bottom: 1px solid #444;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+    
+    .dropdown-item:hover {
+      background: linear-gradient(135deg, #ff6600, #ff8533);
+      transform: translateX(5px);
+    }
+    
+    .dropdown-item a {
+      text-decoration: none;
+      color: #f5f5f5;
+      display: block;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Desktop hover behavior */
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover .dropdown {
+    display: block;
+    animation: slideDown 0.4s ease;
+  }
+}
+
+/* Mobile click behavior */
+.nav-item.active .dropdown {
+  display: block;
+  animation: slideDown 0.4s ease;
+}
+
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Main content */
+    .main-content {
+      margin-top: 40px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1; /* Уменьшенный z-index для основного контента */
+    }
+    
+    /* Founders page specific styles */
+    .page-header {
+      margin: 40px 0 30px 0;
+      text-align: center;
+    }
+    
+    .page-title {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      background: linear-gradient(45deg, #fff, #ff6600, #fff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 102, 0, 0.5);
+    }
+    
+    .page-subtitle {
+      font-size: 18px;
+      color: #ccc;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    
+    .company-intro {
+      background: linear-gradient(135deg, #212121, #2a2a2a, #212121);
+      padding: 40px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      border: 1px solid #333;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    
+    .company-intro::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 102, 0, 0.1) 50%, transparent 70%);
+      z-index: 1;
+    }
+    
+    .intro-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #ccc;
+      text-align: justify;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .intro-text:last-child {
+      margin-bottom: 0;
+    }
+    
+    .highlight {
+      color: #ff6600;
+      font-weight: 600;
+    }
+    
+    .founders-section {
+      background: linear-gradient(135deg, #212121, #2a2a2a, #212121);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+    
+    .founders-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 102, 0, 0.1) 50%, transparent 70%);
+      z-index: 1;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #ff6600;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff6600, transparent);
+    }
+    
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .founder-card {
+      background: linear-gradient(135deg, #2a2a2a, #333);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #444;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .founder-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .founder-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(255, 102, 0, 0.3);
+      border-color: #ff6600;
+    }
+    
+    .founder-card:hover::before {
+      left: 100%;
+    }
+    
+    .founder-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .founder-position {
+      font-size: 14px;
+      color: #ff6600;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+    
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      background: linear-gradient(135deg, #151515, #1a1a1a);
+      color: #ccc;
+      padding: 40px 0;
+      text-align: center;
+      border-top: 2px solid #ff6600;
+      box-shadow: 0 -8px 25px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+      z-index: 1; /* Уменьшенный z-index для футера */
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.5), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #ff6600, transparent);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .footer-column ul li a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      background-color: #ff6600;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+    
+    .footer-column ul li a:hover {
+      color: #ff6600;
+      transform: translateX(5px);
+    }
+    
+    .footer-column ul li a:hover::before {
+      background-color: #fff;
+      box-shadow: 0 0 8px rgba(255, 102, 0, 0.6);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .founders-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        gap: 10px;
+      }
+      
+      .logo-icon {
+        width: 70px;
+        height: 40px;
+      }
+      
+      .logo-main {
+        font-size: 24px;
+      }
+      
+      .logo-sub {
+        font-size: 12px;
+      }
+      
+      .page-title {
+        font-size: 28px;
+      }
+      
+      .founders-section {
+        padding: 25px;
+      }
+      
+      .founders-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .founder-card {
+        padding: 20px;
+      }
+      
+      .company-intro {
+        padding: 25px;
+      }
+      
+      .nav-container {
+        flex-wrap: wrap;
+      }
+      
+      .nav-item {
+        flex: none;
+        min-width: 50%;
+        border-bottom: 1px solid #333;
+      }
+      
+      .nav-item:nth-child(even) {
+        border-right: none;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .page-title {
+        font-size: 24px;
+      }
+      
+      .section-title {
+        font-size: 22px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-item {
+        min-width: 100%;
+      }
+      
+      .logo-container {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <div class="logo">
+          <div class="logo-icon">
+            <div class="right-disk"></div>
+          </div>
+          <div class="logo-text">
+            <div class="logo-main">UNDERGROUND</div>
+            <div class="logo-sub">GYM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <nav>
+    <div class="container">
+      <div class="nav-container">
+        <div class="nav-item" data-has-dropdown="true">
+          <a href="index.html">Главная</a>
+          <div class="dropdown">
+            <div class="dropdown-item"><a href="news.html">Новости</a></div>
+          </div>
+        </div>
+        <div class="nav-item" data-has-dropdown="true">
+          <a href="#">О компании</a>
+          <div class="dropdown">
+            <div class="dropdown-item"><a href="history.html">История и миссия</a></div>
+            <div class="dropdown-item"><a href="founders.html">Основатели</a></div>
+          </div>
+        </div>
+        <div class="nav-item" data-has-dropdown="true">
+          <a href="https://api.whatsapp.com/send/?phone=77085965446&text=Привет%21+�+Меня+интересует+тарифы+на+абонементы&type=phone_number&app_absent=0">Купить абонемент</a>
+        </div>
+        <div class="nav-item" data-has-dropdown="true">
+          <a href="#">Для сотрудников</a>
+          <div class="dropdown">
+            <div class="dropdown-item"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdfEC130jsWfn05Ji_X52fHVy67Or7Y4bYgvhcHjD0ohH9bSw/viewform" target="_blank">Стать частью команды</a></div>
+            <div class="dropdown-item"><a href="content/manuals.docx" download>Методички</a></div>
+            <div class="dropdown-item"><a href="content/trainings.pdf" download>Обучения</a></div>
+          </div>
+        </div>
+        <div class="nav-item" data-has-dropdown="true">
+          <a href="#">Обратная связь</a>
+          <div class="dropdown">
+            <div class="dropdown-item"><a href="contacts.html">Контакты</a></div>
+            <div class="dropdown-item"><a href="addresses.html">Адреса</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <main>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Основатели компании</h1>
+        <p class="page-subtitle">Знакомьтесь с командой лидеров, которые создали и развивают Underground Gym</p>
+      </div>
+      
+      <div class="company-intro">
+        <p class="intro-text">
+          <span class="highlight">Добро пожаловать в компанию Underground Gym!</span> Рынок труда, как и любой другой рынок, основан на принципах купли-продажи, где рабочая сила является основным товаром. Те, кто наиболее эффективно и активно действуют на этом рынке, получают все привилегии и возможности для карьерного роста.
+        </p>
+        <p class="intro-text">
+          Наша компания отличается высокой гибкостью и способностью к адаптации в любых условиях. Мы ожидаем такого же подхода от наших сотрудников. Мы ценим тех, кто умеет эффективно управлять своими ресурсами и демонстрировать высокие результаты. Для нас важно, чтобы наши сотрудники были требовательны как к себе, так и к своим коллегам.
+        </p>
+        <p class="intro-text">
+          В компании <span class="highlight">Underground Gym</span> мы готовы инвестировать в развитие наших сотрудников, предоставляя все необходимые ресурсы и возможности для профессионального роста. Мы стремимся к тому, чтобы каждый член нашей команды мог реализовать свой потенциал и достичь высот в своей карьере. Покажите нам свое стремление и результаты, и мы будем рады поддержать вас на пути к успеху.
+        </p>
+      </div>
+      
+      <div class="founders-section">
+        <h2 class="section-title">Основатели и руководство</h2>
+        
+        <div class="founders-grid">
+          <div class="founder-card">
+            <h3 class="founder-name">Баллес Евгений Михайлович</h3>
+            <p class="founder-position">Директор-основатель Underground gym</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Жанабилов Нурлыбек Куандыкович</h3>
+            <p class="founder-position">Директор-основатель Underground gym</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Арыстанов Эльдар Арыстанович</h3>
+            <p class="founder-position">Коммерческий директор</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Кучаева Алина Анатольевна</h3>
+            <p class="founder-position">Операционный директор</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Кравцова Арина Дмитриевна</h3>
+            <p class="founder-position">HR директор</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Ильясов Ерхан Бейханович</h3>
+            <p class="founder-position">Руководитель отдела продаж 1</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Тургумбаев Тахир Батыржанович</h3>
+            <p class="founder-position">Руководитель отдела продаж 2</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Толеуханова Акбота Сериковна</h3>
+            <p class="founder-position">Руководитель отдела маркетинга</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Нурдуллаева Асем Жанжигитовна</h3>
+            <p class="founder-position">Управляющая филиалов Underground gym</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Овсянникова Татьяна Вячеславовна</h3>
+            <p class="founder-position">Управляющая филиалов Underground Big</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Кузембаев Тамерлан Бергенович</h3>
+            <p class="founder-position">Fitness директор</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Сайфутдинова Эльмира Амангельдыевна</h3>
+            <p class="founder-position">Юрист</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Гайноллинова Альбина Хадировна</h3>
+            <p class="founder-position">Директор по работе и коммуникациям с клиентами</p>
+          </div>
+          
+          <div class="founder-card">
+            <h3 class="founder-name">Зверева Екатерина Анатольевна</h3>
+            <p class="founder-position">Контролер СРМ системы</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>О нас</h3>
+          <ul>
+            <li><a href="history.html">История и миссия</a></li>
+            <li><a href="founders.html">Команда</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Контакты</h3>
+          <ul>
+            <li><a href="https://api.whatsapp.com/send/?phone=77085965446&text=Привет%21+�+Меня+интересует+тарифы+на+абонементы&type=phone_number&app_absent=0">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/underground_gym_ast/?hl=en">Instagram</a></li>
+            <li><a href="contacts.html">Обратная связь</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Underground GYM. Все права защищены. | Станьте лучшей версией себя</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+  // Mobile navigation functionality
+    function isMobileDevice() {
+      return window.innerWidth <= 768 || 
+             ('ontouchstart' in window) || 
+             (navigator.maxTouchPoints > 0) || 
+             (navigator.msMaxTouchPoints > 0);
+    }
+
+    function initMobileNavigation() {
+      const navItems = document.querySelectorAll('.nav-item[data-has-dropdown]');
+      
+      navItems.forEach(item => {
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown');
+        
+        if (isMobileDevice()) {
+          // Mobile behavior - click to toggle
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Close all other dropdowns
+            navItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+              }
+            });
+            
+            // Toggle current dropdown
+            item.classList.toggle('active');
+          });
+          
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!item.contains(e.target)) {
+              item.classList.remove('active');
+            }
+          });
+        } else {
+          // Desktop behavior - hover (already handled by CSS)
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // Initialize navigation on page load
+    document.addEventListener('DOMContentLoaded', initMobileNavigation);
+
+    // Re-initialize on window resize
+    window.addEventListener('resize', function() {
+      // Debounce resize events
+      clearTimeout(window.resizeTimeout);
+      window.resizeTimeout = setTimeout(initMobileNavigation, 250);
+    });
+    </script>
+</body>
+</html>
+
